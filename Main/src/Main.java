@@ -1,4 +1,4 @@
 public class Main {
 
-    System;
+    private int a =1;
 }
