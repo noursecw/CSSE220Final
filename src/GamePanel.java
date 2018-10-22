@@ -40,7 +40,7 @@ public class GamePanel extends JPanel {
 		int numberOfMonsters = 5;
 		for (int i =0;i<numberOfMonsters+1;i++)
 		{
-			Monster monster = new WalkingMonster(world);
+			Monster monster = new WanderingMonster(world);
 			world.addSprite(monster);
 		}
 

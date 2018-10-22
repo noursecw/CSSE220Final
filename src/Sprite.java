@@ -75,6 +75,11 @@ public abstract class Sprite implements Drawable, Temporal, Relocatable {
 		double maxVelocity = limit;
 		return Random.randInterval(-maxVelocity,maxVelocity);
 	}
+
+	/**
+	 * Return true(right) or false(left) randomly
+	 * @return boolean facing to right
+	 */
 	protected boolean randomFacing()
 	{
 		double number = Random.randInterval(-1.0,1.0);
@@ -83,17 +88,19 @@ public abstract class Sprite implements Drawable, Temporal, Relocatable {
 	}
 
 	/**
-	 * return Point2D with random position within the xy limits
+	 * Return a Point2D.Double point with xy border with margin
 	 * @param xLim
 	 * @param yLim
-	 * @return Point2D.Double
+	 * @param margin
+	 * @return point
 	 */
-	protected Point2D.Double randomPos(double xLim, double yLim)
+	protected Point2D.Double randomPos(double xLim, double yLim, double margin)
 	{
-		double x = Random.randInterval(0.0,xLim);
-		double y = Random.randInterval(0.0,yLim);
+		double x = Random.randInterval(margin,xLim-margin);
+		double y = Random.randInterval(margin,yLim-margin);
 		return new Point2D.Double(x,y);
 	}
+
 
 	/**
 	 * Set centerpoint
@@ -105,6 +112,11 @@ public abstract class Sprite implements Drawable, Temporal, Relocatable {
 		this.setCenterPoint(new Point2D.Double(xPos,yPos));
 	}
 
+	/**
+	 * String direction and speed to make sprite move ONCE
+	 * @param direction
+	 * @param speed
+	 */
 	public void moveTowards(String direction, double speed)
 	{
 		double currentX = this.getCenterPoint().getX();
@@ -116,21 +128,32 @@ public abstract class Sprite implements Drawable, Temporal, Relocatable {
 			case "left":
 				this.setXY(currentX - speed, currentY);
 				break;
-			case "up":
-				jump();
-				break;
-			case "down":
-				this.setXY(currentX, currentY + speed);
-				break;
 			default:
 				break;
 		}
 	}
-	private void jump()
+
+	/**
+	 * Move constantly with certain speed
+	 * @param xSpeed
+	 * @param ySpeed
+	 */
+	public void moveBy(double xSpeed, double ySpeed)
+	{
+		double x = getCenterPoint().getX();
+		double y = getCenterPoint().getY();
+		this.setXY(x+xSpeed,y+ySpeed);
+	}
+	protected void jump()
 	{
 
 	}
 
+
+//	protected void bounce()
+//	{
+//
+//	}
 
 
 	// -------------------------------------------------------------------------

@@ -9,7 +9,7 @@ public abstract class Monster extends Sprite {
 
 	protected double diameter = 50.0;
 	protected Color color = Color.MAGENTA;
-	protected boolean facing;
+	protected boolean facing = randomFacing();
 	/**
 	 * Constructs a abstract bouncer in the given world.
 	 * 
@@ -17,7 +17,6 @@ public abstract class Monster extends Sprite {
 	 */
 	public Monster(GameWorld world) {
 		super(world);
-		this.facing = randomFacing();
 		}
 
 	@Override
@@ -32,8 +31,10 @@ public abstract class Monster extends Sprite {
 
 	@Override
 	public void updatePosition() {
-		if (facing) moveTowards("right",3.0);
-		else moveTowards("left",3.0);
+		//change the time period between two possible changing facing
+//		this.facing = randomFacing();
+		if (facing) moveBy(0.3,0.0);
+		else moveBy(-0.3,0.0);
 	}
 
 	@Override
