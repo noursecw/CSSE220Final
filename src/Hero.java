@@ -10,7 +10,7 @@ public class Hero extends Ball {
 	public enum Actions {
 		LEFT, RIGHT, JUMP, SHOOT, IDLE
 	}
-	private KeyForHero keyListener = new KeyForHero();//Add keyListener to the frame
+//	private KeyForHero keyListener = new KeyForHero();//Add keyListener to the frame
 
 
 	public Hero(BallEnvironment world) {
@@ -34,15 +34,15 @@ public class Hero extends Ball {
 	@Override
 	public void updatePosition() {
 		// code for hero movement
-		switch (keyListener.getAction())
-		{
-			case LEFT: moveBy(-10.0,0.0);
-			case RIGHT:moveBy(10.0,0.0);
-			case JUMP: moveBy(0.0,10.0);
-			case IDLE: moveBy(0.0,0.0);
-			case SHOOT: moveBy(0.0,0.0);
-			default:moveBy(0.0,0.0);
-		}
+//		switch (keyListener.getAction())
+//		{
+//			case LEFT: moveBy(-10.0,0.0);
+//			case RIGHT:moveBy(10.0,0.0);
+//			case JUMP: moveBy(0.0,10.0);
+//			case IDLE: moveBy(0.0,0.0);
+//			case SHOOT: moveBy(0.0,0.0);
+//			default:moveBy(0.0,0.0);
+//		}
 			}
 
 	@Override
@@ -67,9 +67,9 @@ public class Hero extends Ball {
 	 * Getter for JFrame in the main to add KeyListener
 	 * @return
 	 */
-	public KeyForHero getkeyListener() {
-		return keyListener;
-	}
+//	public KeyForHero getkeyListener() {
+//		return keyListener;
+//	}
 
 
 }

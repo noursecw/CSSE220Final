@@ -11,7 +11,7 @@ public class KeyForHero implements KeyListener {
 
     @Override
     public void keyTyped(KeyEvent e) {
-//        System.out.println(Action);
+        System.out.println(Action);
 //        judgeTheKey(e);
     }
 
@@ -39,13 +39,16 @@ public class KeyForHero implements KeyListener {
                 Action = Hero.Actions.LEFT;
             case KeyEvent.VK_SPACE:
                 Action = Hero.Actions.LEFT;
+            case KeyEvent.KEY_RELEASED:
+                System.out.println("debug");
             default:
+                System.out.println("Yeah");
                 Action = Hero.Actions.IDLE;
         }
-        System.out.println(Action);
+        System.out.println("WTF");
     }
 
     public Hero.Actions getAction() {
-        return Action;
+        return this.Action;
     }
 }

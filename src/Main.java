@@ -34,8 +34,6 @@ public class Main {
 	public static void main(String[] args) {
 		ArrayList<SimulationPanel> worlds = constructSimulations();
 		JFrame frame = new BallWorldsFrame(worlds);
-//		Hero hero = new Hero(worlds);
-//		frame.addKeyListener(hero.getkeyListener());//Add keyListener to the frame
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 	}
