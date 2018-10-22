@@ -6,7 +6,7 @@ import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
 
 /**
- * A Ball is an abstract class that provides a default timePassed() and
+ * A Sprite is an abstract class that provides a default timePassed() and
  * getShape() implementations and several abstract methods that subclasses must
  * override to get the desired behavior.
  * 
@@ -19,16 +19,16 @@ import java.awt.geom.Point2D;
  * 
  * @author Curt Clifton. Created Jan 22, 2011.
  */
-public abstract class Ball implements Drawable, Temporal, Relocatable {
+public abstract class Sprite implements Drawable, Temporal, Relocatable {
 	private Point2D centerPoint;
-	private BallEnvironment world;
+	private GameEnvironment world;
 
 	/**
 	 * Constructs a new ball at location (0,0) in the given world.
 	 * 
 	 * @param world
 	 */
-	public Ball(BallEnvironment world) {
+	public Sprite(GameEnvironment world) {
 		this(world, new Point2D.Double());
 	}
 
@@ -39,7 +39,7 @@ public abstract class Ball implements Drawable, Temporal, Relocatable {
 	 * 
 	 * @param centerPoint
 	 */
-	public Ball(BallEnvironment world, Point2D centerPoint) {
+	public Sprite(GameEnvironment world, Point2D centerPoint) {
 		this.world = world;
 		this.centerPoint = centerPoint;
 	}
@@ -61,7 +61,7 @@ public abstract class Ball implements Drawable, Temporal, Relocatable {
 	 * 
 	 * @return Returns the world.
 	 */
-	protected BallEnvironment getWorld() {
+	protected GameEnvironment getWorld() {
 		return this.world;
 	}
 
@@ -85,10 +85,22 @@ public abstract class Ball implements Drawable, Temporal, Relocatable {
 		this.setCenterPoint(new Point2D.Double(xPos,yPos));
 	}
 
-	protected void moveBy(double deltaX, double deltaY)
+	public void moveTo(String direction,double speed)
 	{
-		this.setXY(this.getCenterPoint().getX()+deltaX,this.getCenterPoint().getY()+deltaY);
+		double currentX = this.getCenterPoint().getX();
+		double currentY = this.getCenterPoint().getY();
+		if ("right".equals(direction)) {
+			this.setXY(currentX + speed, currentY);
+		} else if ("left".equals(direction)) {
+			this.setXY(currentX - speed, currentY);
+		} else if ("up".equals(direction)) {
+			this.setXY(currentX, currentY - speed);
+		} else if ("down".equals(direction)) {
+			this.setXY(currentX, currentY + speed);
+		} else {
+		}
 	}
+
 
 
 	// -------------------------------------------------------------------------
@@ -103,7 +115,7 @@ public abstract class Ball implements Drawable, Temporal, Relocatable {
 
 	@Override
 	public void die() {
-		// not yet implemented
+		this.world.removeSprite(this);
 	}
 
 	@Override

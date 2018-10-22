@@ -3,11 +3,10 @@ import java.awt.event.KeyListener;
 
 
 public class KeyForHero implements KeyListener {
-    final private Ball hero;
-    final private double speed = 3.0;
-    final private double zero = 0.0;
+    final private Hero hero;
+    final private double speed = 1.0;
 
-    public KeyForHero(BallWorld world) {
+    public KeyForHero(GameWorld world) {
         this.hero = world.getHero();
     }
 
@@ -16,29 +15,35 @@ public class KeyForHero implements KeyListener {
     }
 
     public void keyPressed(KeyEvent e) {
+        System.out.println("From upup"+e.getExtendedKeyCode());
         judgeTheKey(e);
     }
     @Override
     public void keyReleased(KeyEvent e) {
-//        hero.moveBy(0.0,0.0);
+
     }
 
 
     private void judgeTheKey(KeyEvent e)
     {
-        switch (e.getKeyCode()) {
-            case 37://Left arrow
-                hero.moveBy(-speed,zero);
-            case 38://Up arrow
-                hero.moveBy(zero,-speed);
-            case 39://Right arrow
-                hero.moveBy(speed,zero);
-            case 32://Space
-                hero.moveBy(zero,zero);
-            default:
-                hero.moveBy(zero,zero);
+        int keyCode = e.getKeyCode();
+        if (keyCode==37) {
+            hero.moveTo("left", speed);
+            System.out.println("left "+speed);
+        }//Left
+        else if (keyCode==38) {
+            hero.moveTo("up", speed);
+            System.out.println("up " + speed);
+        }//up
+           else if (keyCode==39) {
+            hero.moveTo("right", speed);
+            System.out.println("right " + speed);
+        }//Right
+            else if (keyCode==32) {
+            hero.shoot();
         }
-        System.out.println(e.getKeyCode());
+            else    System.out.println("Not valid");
+        System.out.println(keyCode);
         System.out.println(this.hero.getCenterPoint());
     }
 

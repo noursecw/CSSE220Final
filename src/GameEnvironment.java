@@ -9,24 +9,32 @@ import java.util.List;
  * 
  * @author Curt Clifton. Created Jan 22, 2011.
  */
-public interface BallEnvironment {
+public interface GameEnvironment {
 
 	/**
-	 * Adds the given ball to this world.
+	 * Adds the given sprite to this world.
 	 * 
-	 * @param ball
-	 *            the ball to add, must not be null
+	 * @param sprite
+	 *            the sprite to add, must not be null
 	 */
-	void addBall(Ball ball);
+	void addSprite(Sprite sprite);
 
 	/**
-	 * Removes the given ball from this world, if it is in the world at all.
+	 * Adds the given sprite to this world.
+	 *
+	 * @param hero
+	 *            the sprite to add, must not be null
+	 */
+	void addHero(Hero hero);
+
+	/**
+	 * Removes the given sprite from this world, if it is in the world at all.
 	 * Otherwise silently does nothing.
 	 * 
-	 * @param ball
-	 *            the ball to remove
+	 * @param sprite
+	 *            the sprite to remove
 	 */
-	void removeBall(Ball ball);
+	void removeSprite(Sprite sprite);
 
 	/**
 	 * Returns the ball that is closest to the given point.
@@ -34,7 +42,7 @@ public interface BallEnvironment {
 	 * @param point
 	 * @return the nearest ball, or null if no balls in this world
 	 */
-	Ball nearestBall(Point2D point);
+	Sprite nearestSprite(Point2D point);
 
 	/**
 	 * Checks whether the given point is within the horizontal extents of this

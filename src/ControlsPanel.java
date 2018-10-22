@@ -9,7 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 /**
- * A set of controls a single BallWorld.
+ * A set of controls a single GameWorld.
  * 
  * @author Curt Clifton. Created Jan 22, 2011.
  */
@@ -22,13 +22,14 @@ public class ControlsPanel extends JPanel {
 	 * 
 	 * @param world
 	 */
-	public ControlsPanel(final BallWorld world) {
+	public ControlsPanel(final GameWorld world) {
 		setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
-		for (String bn : BALL_NAMES) {
-			add(new BallButton(bn, world));
-		}
-
-		add(makePauseResumeButton(world));
+		//Remove all the buttons
+//		for (String bn : BALL_NAMES) {
+//			add(new BallButton(bn, world));
+//		}
+//
+//		add(makePauseResumeButton(world));
 	}
 
 	/**

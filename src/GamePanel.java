@@ -12,7 +12,7 @@ import javax.swing.JPanel;
  * 
  * @author Curt Clifton. Created Jan 22, 2011.
  */
-public class SimulationPanel extends JPanel {
+public class GamePanel extends JPanel {
 
 	private static final int GAP_WIDTH = 10;
 
@@ -27,15 +27,16 @@ public class SimulationPanel extends JPanel {
 	 * @param height
 	 * @param color
 	 */
-	public SimulationPanel(int width, int height, Color color) {
+	public GamePanel(int width, int height, Color color) {
 		// Change layout so the buttons and the world are side-by-side.
 		setLayout(new BoxLayout(this, BoxLayout.LINE_AXIS));
-		BallWorld world = new BallWorld(width, height, color);
+		GameWorld world = new GameWorld(width, height, color);
+
 		//Add hero in advance
 		Hero hero = new Hero(world);
-		world.addBall(hero);
+		world.addHero(hero);
 
-		BallWorldComponent worldComponent = new BallWorldComponent(world);
+		GameComponent worldComponent = new GameComponent(world);
 		ControlsPanel controlsPanel = new ControlsPanel(world);
 		// add "rigid stuff" to force minimum spacing
 		add(Box.createHorizontalStrut(GAP_WIDTH));

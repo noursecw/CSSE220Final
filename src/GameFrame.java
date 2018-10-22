@@ -19,7 +19,7 @@ import javax.swing.JPanel;
  * 
  * @author Curt Clifton. Created Jan 22, 2011.
  */
-public class BallWorldsFrame extends JFrame {
+public class GameFrame extends JFrame {
 
 	private static final int GAP = 10;
 
@@ -29,8 +29,8 @@ public class BallWorldsFrame extends JFrame {
 	 * @param panels
 	 *            a non-empty list of simulation panels to display
 	 */
-	public BallWorldsFrame(List<SimulationPanel> panels) {
-		setTitle("Ball Worlds");
+	public GameFrame(List<GamePanel> panels) {
+		setTitle("Sprite Worlds");
 
 		JPanel content = new JPanel();
 		// Changes the layout of the panel so the worlds will stack vertically
@@ -40,7 +40,7 @@ public class BallWorldsFrame extends JFrame {
 
 
 
-		for (SimulationPanel sp : panels) {
+		for (GamePanel sp : panels) {
 			content.add(sp);
 			content.add(Box.createVerticalStrut(GAP));
 		}

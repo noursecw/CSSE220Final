@@ -5,7 +5,7 @@
  * 
  * @author Curt Clifton. Created Jan 22, 2011.
  */
-public abstract class AbstractBouncer extends Ball {
+public abstract class Monster extends Sprite {
 	// nothing here... yet
 
 	/**
@@ -13,7 +13,7 @@ public abstract class AbstractBouncer extends Ball {
 	 * 
 	 * @param world
 	 */
-	public AbstractBouncer(BallEnvironment world) {
+	public Monster(GameEnvironment world) {
 		super(world);
 	}
 }

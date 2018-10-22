@@ -20,19 +20,19 @@ import javax.swing.Timer;
  * 
  * @author Curt Clifton. Created Jan 22, 2011.
  */
-public class BallWorldComponent extends JComponent {
+public class GameComponent extends JComponent {
 
 	/**
-	 * Color used for a Ball selected by the user.
+	 * Color used for a Sprite selected by the user.
 	 */
 	public static final Color SELECTED_BALL_COLOR = Color.CYAN;
 
 	private static final int FRAMES_PER_SECOND = 30;
 	private static final int REPAINT_INTERVAL_MS = 1000 / FRAMES_PER_SECOND;
 
-	private BallWorld world;
+	private GameWorld world;
 	private boolean hasShownNullErrorMessage = false;
-	private Ball selectedBall = null;
+	private Sprite selectedSprite = null;
 
 	/**
 	 * Constructs a component for rendering the given ball environment on the
@@ -40,15 +40,16 @@ public class BallWorldComponent extends JComponent {
 	 * 
 	 * @param world
 	 */
-	public BallWorldComponent(BallWorld world) {
+	public GameComponent(GameWorld world) {
 		this.world = world;
 
 		setPreferredSize(world.getSize());
 		setMaximumSize(world.getSize());
 
-		BallWorldMouseHandler mousehandler = new BallWorldMouseHandler();
-		addMouseListener(mousehandler);
-		addMouseMotionListener(mousehandler);
+		//Both mousehandler are removed
+//		BallWorldMouseHandler mousehandler = new BallWorldMouseHandler();
+//		addMouseListener(mousehandler);
+//		addMouseMotionListener(mousehandler);
 
 		//KeyListener added into world
 		KeyForHero keyListener = new KeyForHero(this.world);
@@ -102,7 +103,7 @@ public class BallWorldComponent extends JComponent {
 			return;
 		}
 
-		if (d == this.selectedBall) {
+		if (d == this.selectedSprite) {
 			g2.setColor(SELECTED_BALL_COLOR);
 		} else {
 			g2.setColor(color);
@@ -111,7 +112,7 @@ public class BallWorldComponent extends JComponent {
 	}
 
 	/**
-	 * Displays an error message explaining that the Ball's color/shape was null
+	 * Displays an error message explaining that the Sprite's color/shape was null
 	 * so it could not be drawn. Show the message only once per component.
 	 */
 	private void showNullPointerMessage(String nullAttribute, Drawable d) {
@@ -128,40 +129,41 @@ public class BallWorldComponent extends JComponent {
 	/**
 	 * This inner class handles mouse events on the outer class's world.
 	 */
+	/*
 	public class BallWorldMouseHandler implements MouseMotionListener,
 			MouseListener {
 		@Override
 		public void mouseClicked(MouseEvent e) {
-			Ball nearestBall = BallWorldComponent.this.world.nearestBall(e
+			Sprite nearestSprite = GameComponent.this.world.nearestSprite(e
 					.getPoint());
-			if (nearestBall != null) {
+			if (nearestSprite != null) {
 				if (e.getButton() == MouseEvent.BUTTON1) {
-					nearestBall.setIsPaused(!nearestBall.getIsPaused());
+					nearestSprite.setIsPaused(!nearestSprite.getIsPaused());
 				} else {
-					nearestBall.die();
+					nearestSprite.die();
 				}
 			}
 		}
 
 		@Override
 		public void mousePressed(MouseEvent e) {
-			Ball nearestBall = BallWorldComponent.this.world.nearestBall(e
+			Sprite nearestSprite = GameComponent.this.world.nearestSprite(e
 					.getPoint());
-			BallWorldComponent.this.selectedBall = nearestBall;
+			GameComponent.this.selectedSprite = nearestSprite;
 		}
 
 		@Override
 		public void mouseDragged(MouseEvent e) {
-			if (BallWorldComponent.this.selectedBall != null) {
-				BallWorldComponent.this.selectedBall.moveTo(e.getPoint());
-				BallWorldComponent.this.selectedBall.setIsPaused(true);
+			if (GameComponent.this.selectedSprite != null) {
+				GameComponent.this.selectedSprite.moveTo(e.getPoint());
+				GameComponent.this.selectedSprite.setIsPaused(true);
 			}
 		}
 
 		@Override
 		public void mouseReleased(MouseEvent e) {
-			if (BallWorldComponent.this.selectedBall != null) {
-				BallWorldComponent.this.selectedBall = null;
+			if (GameComponent.this.selectedSprite != null) {
+				GameComponent.this.selectedSprite = null;
 			}
 		}
 
@@ -180,5 +182,5 @@ public class BallWorldComponent extends JComponent {
 			// nothing to do
 		}
 	}
-
+*/
 }

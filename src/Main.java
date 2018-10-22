@@ -32,8 +32,8 @@ public class Main {
 	 *            ignored
 	 */
 	public static void main(String[] args) {
-		ArrayList<SimulationPanel> worlds = constructSimulations();
-		JFrame frame = new BallWorldsFrame(worlds);
+		ArrayList<GamePanel> worlds = constructSimulations();
+		JFrame frame = new GameFrame(worlds);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 	}
@@ -44,13 +44,13 @@ public class Main {
 	 * 
 	 * @return a list of worlds
 	 */
-	private static ArrayList<SimulationPanel> constructSimulations() {
-		ArrayList<SimulationPanel> result = new ArrayList<SimulationPanel>();
+	private static ArrayList<GamePanel> constructSimulations() {
+		ArrayList<GamePanel> result = new ArrayList<GamePanel>();
 		for (int i = 0; i < NUMBER_OF_SIMULATIONS; i++) {
-			int width = Random.randRange(MIN_WIDTH, MAX_WIDTH);
-			int height = Random.randRange(MIN_HEIGHT, MAX_HEIGHT);
+			int width = MAX_WIDTH;
+			int height = MAX_HEIGHT;
 			Color c = BACKGROUND_COLORS[i % BACKGROUND_COLORS.length];
-			SimulationPanel sp = new SimulationPanel(width, height, c);
+			GamePanel sp = new GamePanel(width, height, c);
 			result.add(sp);
 		}
 		return result;
