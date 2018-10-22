@@ -4,13 +4,13 @@ import java.awt.event.KeyListener;
 
 public class KeyForHero implements KeyListener {
     final private Hero hero;
-    final private double speed = 3.0;
-    final private double zero = 0.0;
-    final private GameWorld world;
+//    final private double speed = 3.0;
+//    final private double zero = 0.0;
+//    final private GameWorld world;
 
     public KeyForHero(GameWorld world) {
         this.hero = world.getHero();
-        this.world = world;
+//        this.world = world;
     }
 
     @Override

@@ -5,6 +5,7 @@ public class Hero extends Sprite {
 	private GameWorld world;
 	private int diameter = 50;
 	private Action action;
+	private double speed = 5.0;
 
 	public Hero(GameWorld world) {
 		super(world);
@@ -31,14 +32,13 @@ public class Hero extends Sprite {
 
 	@Override
 	public void updatePosition() { //Only used for jump
-		double speed = 5.0;
 		switch (this.action) {
 			case left:
 				moveBy(-speed, zero);
 				setFacing(false);
 				break;
 			case jump:
-//                hero.updatePosition();//Unique for jump
+				this.jump();
 				break;
 			case right:
 				moveBy(speed, zero);
@@ -73,5 +73,22 @@ public class Hero extends Sprite {
 
 	public void setAction(Action action) {
 		this.action = action;
+	}
+
+	private void jump()
+	{
+		int i=0;
+		switch (i){
+			case 0: moveBy(zero,-1*speed); i+=1; break;
+			case 1: moveBy(zero,-1*speed); i+=1; break;
+			case 2: moveBy(zero,speed); i+=1; break;
+			case 3: moveBy(zero,speed); i+=1; break;
+			case 4: moveBy(zero,speed); i+=1; break;
+			case 5: moveBy(zero,speed); i+=1; break;
+			default:moveBy(zero,zero); break;
+		}
+
+
+
 	}
 }
