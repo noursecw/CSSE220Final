@@ -3,7 +3,6 @@ import java.awt.geom.Point2D;
 
 public class Bubble extends Sprite {
     final private Hero hero;
-    final private double speed = 5.0;
     final private boolean facing;
     public Bubble(GameWorld world) {
         super(world);
@@ -21,6 +20,7 @@ public class Bubble extends Sprite {
 
     @Override
     public void updatePosition() {
+        double speed = 5.0;
         if (facing) moveBy(speed,zero);
         else moveBy(-speed,zero);
     }

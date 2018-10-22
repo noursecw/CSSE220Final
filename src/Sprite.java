@@ -24,6 +24,7 @@ public abstract class Sprite implements Drawable, Temporal, Relocatable {
 	private GameWorld world;
 	final double zero = 0.0;
 	private boolean facing = true;//Right-True;Left-False
+	public enum Action {idle,shoot,left,right,jump,jumpFinish,fall,die}
 
 	/**
 	 * Constructs a new ball at location (0,0) in the given world.
@@ -120,7 +121,7 @@ public abstract class Sprite implements Drawable, Temporal, Relocatable {
 		double y = getCenterPoint().getY();
 		this.setXY(x+xSpeed,y+ySpeed);
 	}
-	protected void jump()
+	protected void jumpAndFall()
 	{
 
 	}
@@ -179,7 +180,7 @@ public abstract class Sprite implements Drawable, Temporal, Relocatable {
 	 */
 	@Override
 	public void moveTo(Point2D point) {
-		// not yet implemented
+		this.setCenterPoint(point);
 	}
 
 	/**

@@ -13,7 +13,7 @@ public abstract class Monster extends Sprite {
 	/**
 	 * Constructs a abstract bouncer in the given world.
 	 * 
-	 * @param world
+	 * @param world Gameworld
 	 */
 	public Monster(GameWorld world) {
 		super(world);

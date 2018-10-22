@@ -23,9 +23,9 @@ public class GamePanel extends JPanel {
 	 * Note that the actual dimensions of the resulting panel will be larger,
 	 * since the panel also includes the controls for the simulation.
 	 * 
-	 * @param width
-	 * @param height
-	 * @param color
+	 * @param width width
+	 * @param height height
+	 * @param color color
 	 */
 	public GamePanel(int width, int height, Color color) {
 		// Change layout so the buttons and the world are side-by-side.

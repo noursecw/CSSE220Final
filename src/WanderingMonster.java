@@ -3,7 +3,7 @@ public class WanderingMonster extends Monster {
     /**
      * Constructs a abstract bouncer in the given world.
      *
-     * @param world
+     * @param world Gameworld
      */
     public WanderingMonster(GameWorld world) {
         super(world);

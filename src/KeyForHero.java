@@ -15,6 +15,7 @@ public class KeyForHero implements KeyListener {
 
     @Override
     public void keyTyped(KeyEvent e) {
+
     }
 
     public void keyPressed(KeyEvent e) {
@@ -23,7 +24,7 @@ public class KeyForHero implements KeyListener {
     }
     @Override
     public void keyReleased(KeyEvent e) {
-
+        hero.setAction(Sprite.Action.idle);
     }
 
     private void judgeTheKey(KeyEvent e)
@@ -31,18 +32,16 @@ public class KeyForHero implements KeyListener {
         int keyCode = e.getKeyCode();
         switch (keyCode) {
             case 37:
-                hero.moveBy(-speed,zero);
-                hero.setFacing(false);
+                hero.setAction(Sprite.Action.left);
                 break;
             case 38:
-                hero.moveBy(zero, -speed);
+                hero.setAction(Sprite.Action.jump);
                 break;
             case 39:
-                hero.moveBy(speed, zero);
-                hero.setFacing(true);
+                hero.setAction(Sprite.Action.right);
                 break;
-            case 32://Space
-                hero.shoot();
+            case 32:
+                hero.setAction(Sprite.Action.shoot);
                 break;
             case 85://U
 //                world.nextLevel();

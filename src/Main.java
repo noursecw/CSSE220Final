@@ -45,7 +45,7 @@ public class Main {
 	 * @return a list of worlds
 	 */
 	private static ArrayList<GamePanel> constructSimulations() {
-		ArrayList<GamePanel> result = new ArrayList<GamePanel>();
+		ArrayList<GamePanel> result = new ArrayList<>();
 		for (int i = 0; i < NUMBER_OF_SIMULATIONS; i++) {
 			int width = MAX_WIDTH;
 			int height = MAX_HEIGHT;

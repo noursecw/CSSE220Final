@@ -38,7 +38,7 @@ public class GameComponent extends JComponent {
 	 * Constructs a component for rendering the given ball environment on the
 	 * GUI.
 	 * 
-	 * @param world
+	 * @param world Gameworld
 	 */
 	public GameComponent(GameWorld world) {
 		this.world = world;
@@ -126,9 +126,9 @@ public class GameComponent extends JComponent {
 		}
 	}
 
-	/**
-	 * This inner class handles mouse events on the outer class's world.
-	 */
+//	/**
+//	 * This inner class handles mouse events on the outer class's world.
+//	 */
 	/*
 	public class BallWorldMouseHandler implements MouseMotionListener,
 			MouseListener {

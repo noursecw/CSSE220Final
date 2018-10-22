@@ -17,7 +17,8 @@ import javax.swing.Timer;
  * @author Curt Clifton. Created Jan 22, 2011.
  */
 public class GameWorld implements GameEnvironment, Drawable, Temporal {
-	private static final int UPDATE_INTERVAL_MS = 10;
+//	private static final int UPDATE_INTERVAL_MS = 10; //old
+	private static final int UPDATE_INTERVAL_MS = 5;
 	private final int width;
 	private final int height;
 	private final Color color;
@@ -35,9 +36,9 @@ public class GameWorld implements GameEnvironment, Drawable, Temporal {
 	 * Constructs a new world that has the given dimensions and the given
 	 * background color.
 	 * 
-	 * @param width
-	 * @param height
-	 * @param color
+	 * @param width width
+	 * @param height height
+	 * @param color color
 	 */
 	public GameWorld(int width, int height, Color color) {
 		this.width = width;
@@ -122,13 +123,13 @@ public class GameWorld implements GameEnvironment, Drawable, Temporal {
 
 	@Override
 	public synchronized List<Drawable> getDrawableParts() {
-		return new ArrayList<Drawable>(this.sprites);
+		return new ArrayList<>(this.sprites);
 	}
 
 	@Override
 	public Point2D getCenterPoint() {
-		double x = this.width / 2;
-		double y = this.height / 2;
+		double x = this.width / 2.0;
+		double y = this.height / 2.0;
 		return new Point2D.Double(x, y);
 	}
 
