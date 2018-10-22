@@ -21,14 +21,15 @@ import java.awt.geom.Point2D;
  */
 public abstract class Sprite implements Drawable, Temporal, Relocatable {
 	private Point2D centerPoint;
-	private GameEnvironment world;
+	private GameWorld world;
+	protected boolean facing = true;//Right-True;Left-False
 
 	/**
 	 * Constructs a new ball at location (0,0) in the given world.
 	 * 
 	 * @param world
 	 */
-	public Sprite(GameEnvironment world) {
+	public Sprite(GameWorld world) {
 		this(world, new Point2D.Double());
 	}
 
@@ -39,7 +40,7 @@ public abstract class Sprite implements Drawable, Temporal, Relocatable {
 	 * 
 	 * @param centerPoint
 	 */
-	public Sprite(GameEnvironment world, Point2D centerPoint) {
+	public Sprite(GameWorld world, Point2D centerPoint) {
 		this.world = world;
 		this.centerPoint = centerPoint;
 	}
@@ -74,6 +75,25 @@ public abstract class Sprite implements Drawable, Temporal, Relocatable {
 		double maxVelocity = limit;
 		return Random.randInterval(-maxVelocity,maxVelocity);
 	}
+	protected boolean randomFacing()
+	{
+		double number = Random.randInterval(-1.0,1.0);
+		if (number>0) return true;
+		else return false;
+	}
+
+	/**
+	 * return Point2D with random position within the xy limits
+	 * @param xLim
+	 * @param yLim
+	 * @return Point2D.Double
+	 */
+	protected Point2D.Double randomPos(double xLim, double yLim)
+	{
+		double x = Random.randInterval(0.0,xLim);
+		double y = Random.randInterval(0.0,yLim);
+		return new Point2D.Double(x,y);
+	}
 
 	/**
 	 * Set centerpoint
@@ -85,20 +105,30 @@ public abstract class Sprite implements Drawable, Temporal, Relocatable {
 		this.setCenterPoint(new Point2D.Double(xPos,yPos));
 	}
 
-	public void moveTo(String direction,double speed)
+	public void moveTowards(String direction, double speed)
 	{
 		double currentX = this.getCenterPoint().getX();
 		double currentY = this.getCenterPoint().getY();
-		if ("right".equals(direction)) {
-			this.setXY(currentX + speed, currentY);
-		} else if ("left".equals(direction)) {
-			this.setXY(currentX - speed, currentY);
-		} else if ("up".equals(direction)) {
-			this.setXY(currentX, currentY - speed);
-		} else if ("down".equals(direction)) {
-			this.setXY(currentX, currentY + speed);
-		} else {
+		switch (direction) {
+			case "right":
+				this.setXY(currentX + speed, currentY);
+				break;
+			case "left":
+				this.setXY(currentX - speed, currentY);
+				break;
+			case "up":
+				jump();
+				break;
+			case "down":
+				this.setXY(currentX, currentY + speed);
+				break;
+			default:
+				break;
 		}
+	}
+	private void jump()
+	{
+
 	}
 
 
@@ -191,4 +221,15 @@ public abstract class Sprite implements Drawable, Temporal, Relocatable {
 	 */
 	public abstract double getDiameter();
 
+	public boolean getFacing() {
+		return facing;
+	}
+	public void setFacing(boolean facing)
+	{
+		this.facing = facing;
+	}
+	public void flipFacing()
+	{
+		this.facing = !this.facing;
+	}
 }

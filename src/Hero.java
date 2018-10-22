@@ -4,7 +4,6 @@ import java.awt.geom.Point2D;
 public class Hero extends Sprite {
 	private GameWorld world;
 	private int diameter = 50;
-
 	public Hero(GameWorld world) {
 		super(world);
 		this.world = world;

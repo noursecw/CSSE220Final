@@ -64,14 +64,11 @@ public class GameWorld implements GameEnvironment, Drawable, Temporal {
 	{
 		return heroList.get(0);
 	}
-	public Point2D getHeroLocation()
-	{
-		return heroList.get(0).getCenterPoint();
-	}
 
-
-	// -------------------------------------------------------------------------
-	// GameEnvironment interface
+	/*
+	-------------------------------------------------------------------------
+	GameEnvironment interface
+	*/
 
 	@Override
 	public synchronized void addSprite(Sprite sprite) {

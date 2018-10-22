@@ -36,6 +36,15 @@ public class GamePanel extends JPanel {
 		Hero hero = new Hero(world);
 		world.addHero(hero);
 
+		//Add monsters in advance
+		int numberOfMonsters = 5;
+		for (int i =0;i<numberOfMonsters+1;i++)
+		{
+			Monster monster = new WalkingMonster(world);
+			world.addSprite(monster);
+		}
+
+
 		GameComponent worldComponent = new GameComponent(world);
 		ControlsPanel controlsPanel = new ControlsPanel(world);
 		// add "rigid stuff" to force minimum spacing

@@ -5,9 +5,11 @@ import java.awt.event.KeyListener;
 public class KeyForHero implements KeyListener {
     final private Hero hero;
     final private double speed = 1.0;
+    final private GameWorld world;
 
     public KeyForHero(GameWorld world) {
         this.hero = world.getHero();
+        this.world = world;
     }
 
     @Override
@@ -15,7 +17,7 @@ public class KeyForHero implements KeyListener {
     }
 
     public void keyPressed(KeyEvent e) {
-        System.out.println("From upup"+e.getExtendedKeyCode());
+        System.out.println("Keystroke read as: "+e.getExtendedKeyCode());
         judgeTheKey(e);
     }
     @Override
@@ -23,27 +25,33 @@ public class KeyForHero implements KeyListener {
 
     }
 
-
     private void judgeTheKey(KeyEvent e)
     {
         int keyCode = e.getKeyCode();
-        if (keyCode==37) {
-            hero.moveTo("left", speed);
-            System.out.println("left "+speed);
-        }//Left
-        else if (keyCode==38) {
-            hero.moveTo("up", speed);
-            System.out.println("up " + speed);
-        }//up
-           else if (keyCode==39) {
-            hero.moveTo("right", speed);
-            System.out.println("right " + speed);
-        }//Right
-            else if (keyCode==32) {
-            hero.shoot();
+        switch (keyCode) {
+            case 37:
+                hero.moveTowards("left", speed);
+                hero.setFacing(false);
+                break;
+            case 38:
+                hero.moveTowards("up", speed);
+                break;
+            case 39:
+                hero.moveTowards("right", speed);
+                hero.setFacing(true);
+                break;
+            case 32://Space
+                hero.shoot();
+                break;
+            case 85://U
+//                world.nextLevel();
+                break;
+            case 68://D
+//                world.previousLevel();
+                break;
+            default:
+                break;
         }
-            else    System.out.println("Not valid");
-        System.out.println(keyCode);
         System.out.println(this.hero.getCenterPoint());
     }
 
