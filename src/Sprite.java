@@ -28,7 +28,7 @@ public abstract class Sprite implements Drawable, Temporal, Relocatable {
 	/**
 	 * Constructs a new ball at location (0,0) in the given world.
 	 * 
-	 * @param world
+	 * @param world GameWorld
 	 */
 	public Sprite(GameWorld world) {
 		this(world, new Point2D.Double());
@@ -52,7 +52,7 @@ public abstract class Sprite implements Drawable, Temporal, Relocatable {
 	/**
 	 * Sets the center point of this object
 	 * 
-	 * @param centerPoint
+	 * @param centerPoint center point
 	 */
 	void setCenterPoint(Point2D centerPoint) {
 		this.centerPoint = centerPoint;
@@ -81,8 +81,7 @@ public abstract class Sprite implements Drawable, Temporal, Relocatable {
 	boolean randomFacing()
 	{
 		double number = Random.randInterval(-1.0,1.0);
-		if (number>0) return true;
-		else return false;
+		return number > 0;
 	}
 
 	/**
@@ -92,7 +91,7 @@ public abstract class Sprite implements Drawable, Temporal, Relocatable {
 	 * @param margin margin
 	 * @return point
 	 */
-	protected Point2D.Double randomPos(double xLim, double yLim, double margin)
+	Point2D.Double randomPos(double xLim, double yLim, double margin)
 	{
 		double x = Random.randInterval(margin,xLim-margin);
 		double y = Random.randInterval(margin,yLim-margin);
@@ -102,20 +101,20 @@ public abstract class Sprite implements Drawable, Temporal, Relocatable {
 
 	/**
 	 * Set centerpoint
-	 * @param xPos
-	 * @param yPos
+	 * @param xPos x position
+	 * @param yPos y position
 	 */
-	protected void setXY(double xPos,double yPos)
+	void setXY(double xPos, double yPos)
 	{
 		this.setCenterPoint(new Point2D.Double(xPos,yPos));
 	}
 
 	/**
 	 * Move constantly with certain speed
-	 * @param xSpeed
-	 * @param ySpeed
+	 * @param xSpeed speed x direction
+	 * @param ySpeed speed y direction
 	 */
-	public void moveBy(double xSpeed, double ySpeed)
+	void moveBy(double xSpeed, double ySpeed)
 	{
 		double x = getCenterPoint().getX();
 		double y = getCenterPoint().getY();
@@ -176,7 +175,7 @@ public abstract class Sprite implements Drawable, Temporal, Relocatable {
 	/**
 	 * Re-centers this ball at the given point.
 	 * 
-	 * @param point
+	 * @param point point
 	 */
 	@Override
 	public void moveTo(Point2D point) {
@@ -221,10 +220,10 @@ public abstract class Sprite implements Drawable, Temporal, Relocatable {
 	 */
 	public abstract double getDiameter();
 
-	public boolean getFacing() {
+	boolean getFacing() {
 		return facing;
 	}
-	public void setFacing(boolean facing)
+	void setFacing(boolean facing)
 	{
 		this.facing = facing;
 	}
