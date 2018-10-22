@@ -4,7 +4,8 @@ import java.awt.event.KeyListener;
 
 public class KeyForHero implements KeyListener {
     final private Hero hero;
-    final private double speed = 1.0;
+    final private double speed = 3.0;
+    final private double zero = 0.0;
     final private GameWorld world;
 
     public KeyForHero(GameWorld world) {
@@ -17,7 +18,7 @@ public class KeyForHero implements KeyListener {
     }
 
     public void keyPressed(KeyEvent e) {
-        System.out.println("Keystroke read as: "+e.getExtendedKeyCode());
+//        System.out.println("Keystroke read as: "+e.getExtendedKeyCode());
         judgeTheKey(e);
     }
     @Override
@@ -30,14 +31,14 @@ public class KeyForHero implements KeyListener {
         int keyCode = e.getKeyCode();
         switch (keyCode) {
             case 37:
-                hero.moveTowards("left", speed);
+                hero.moveBy(-speed,zero);
                 hero.setFacing(false);
                 break;
             case 38:
-                hero.moveTowards("up", speed);
+                hero.moveBy(zero, -speed);
                 break;
             case 39:
-                hero.moveTowards("right", speed);
+                hero.moveBy(speed, zero);
                 hero.setFacing(true);
                 break;
             case 32://Space

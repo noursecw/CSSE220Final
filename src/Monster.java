@@ -33,8 +33,8 @@ public abstract class Monster extends Sprite {
 	public void updatePosition() {
 		//change the time period between two possible changing facing
 //		this.facing = randomFacing();
-		if (facing) moveBy(0.3,0.0);
-		else moveBy(-0.3,0.0);
+		if (facing) moveBy(0.3,zero);
+		else moveBy(-0.3,zero);
 	}
 
 	@Override

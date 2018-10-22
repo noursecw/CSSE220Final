@@ -22,7 +22,8 @@ import java.awt.geom.Point2D;
 public abstract class Sprite implements Drawable, Temporal, Relocatable {
 	private Point2D centerPoint;
 	private GameWorld world;
-	protected boolean facing = true;//Right-True;Left-False
+	final double zero = 0.0;
+	private boolean facing = true;//Right-True;Left-False
 
 	/**
 	 * Constructs a new ball at location (0,0) in the given world.
@@ -36,9 +37,9 @@ public abstract class Sprite implements Drawable, Temporal, Relocatable {
 	/**
 	 * Constructs a ball centered at the given point in the given world.
 	 * 
-	 * @param world
+	 * @param world GameWorld
 	 * 
-	 * @param centerPoint
+	 * @param centerPoint center point
 	 */
 	public Sprite(GameWorld world, Point2D centerPoint) {
 		this.world = world;
@@ -53,7 +54,7 @@ public abstract class Sprite implements Drawable, Temporal, Relocatable {
 	 * 
 	 * @param centerPoint
 	 */
-	protected void setCenterPoint(Point2D centerPoint) {
+	void setCenterPoint(Point2D centerPoint) {
 		this.centerPoint = centerPoint;
 	}
 
@@ -66,21 +67,18 @@ public abstract class Sprite implements Drawable, Temporal, Relocatable {
 		return this.world;
 	}
 
-	/**
-	 * Generate random speed within the absolute value, limit.
-	 * @return speed
-	 */
+	/*
 	protected double randomVelocity(double limit)
 	{
 		double maxVelocity = limit;
 		return Random.randInterval(-maxVelocity,maxVelocity);
-	}
+	}*/
 
 	/**
 	 * Return true(right) or false(left) randomly
 	 * @return boolean facing to right
 	 */
-	protected boolean randomFacing()
+	boolean randomFacing()
 	{
 		double number = Random.randInterval(-1.0,1.0);
 		if (number>0) return true;
@@ -89,9 +87,9 @@ public abstract class Sprite implements Drawable, Temporal, Relocatable {
 
 	/**
 	 * Return a Point2D.Double point with xy border with margin
-	 * @param xLim
-	 * @param yLim
-	 * @param margin
+	 * @param xLim width limit
+	 * @param yLim height limit
+	 * @param margin margin
 	 * @return point
 	 */
 	protected Point2D.Double randomPos(double xLim, double yLim, double margin)
@@ -110,27 +108,6 @@ public abstract class Sprite implements Drawable, Temporal, Relocatable {
 	protected void setXY(double xPos,double yPos)
 	{
 		this.setCenterPoint(new Point2D.Double(xPos,yPos));
-	}
-
-	/**
-	 * String direction and speed to make sprite move ONCE
-	 * @param direction
-	 * @param speed
-	 */
-	public void moveTowards(String direction, double speed)
-	{
-		double currentX = this.getCenterPoint().getX();
-		double currentY = this.getCenterPoint().getY();
-		switch (direction) {
-			case "right":
-				this.setXY(currentX + speed, currentY);
-				break;
-			case "left":
-				this.setXY(currentX - speed, currentY);
-				break;
-			default:
-				break;
-		}
 	}
 
 	/**

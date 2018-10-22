@@ -155,7 +155,7 @@ public class GameComponent extends JComponent {
 		@Override
 		public void mouseDragged(MouseEvent e) {
 			if (GameComponent.this.selectedSprite != null) {
-				GameComponent.this.selectedSprite.moveTowards(e.getPoint());
+				GameComponent.this.selectedSprite.moveTo(e.getPoint());
 				GameComponent.this.selectedSprite.setIsPaused(true);
 			}
 		}

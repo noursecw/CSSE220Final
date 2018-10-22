@@ -21,8 +21,8 @@ public class Bubble extends Sprite {
 
     @Override
     public void updatePosition() {
-        if (facing) moveTowards("right",speed);
-        else moveTowards("left",speed);
+        if (facing) moveBy(speed,zero);
+        else moveBy(-speed,zero);
     }
 
     @Override
