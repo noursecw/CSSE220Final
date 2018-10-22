@@ -37,6 +37,9 @@ public class BallWorldsFrame extends JFrame {
 		content.setLayout(new BoxLayout(content, BoxLayout.PAGE_AXIS));
 		// add "rigid stuff" to force minimum spacing
 		content.add(Box.createVerticalStrut(GAP));
+
+
+
 		for (SimulationPanel sp : panels) {
 			content.add(sp);
 			content.add(Box.createVerticalStrut(GAP));
@@ -44,7 +47,8 @@ public class BallWorldsFrame extends JFrame {
 		add(content);
 		add(quitButtonComponent(), BorderLayout.PAGE_END);
 		setResizable(false);
-		
+
+
 		pack();
 	}
 

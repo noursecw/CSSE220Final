@@ -87,7 +87,7 @@ public abstract class Ball implements Drawable, Temporal, Relocatable {
 
 	protected void moveBy(double deltaX, double deltaY)
 	{
-		this.setXY(this.centerPoint.getX()+deltaX,this.centerPoint.getY()+deltaY);
+		this.setXY(this.getCenterPoint().getX()+deltaX,this.getCenterPoint().getY()+deltaY);
 	}
 
 

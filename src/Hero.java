@@ -7,9 +7,6 @@ import static com.sun.java.accessibility.util.AWTEventMonitor.addKeyListener;
 
 public class Hero extends Ball {
 	private int diameter = 50;
-	public enum Actions {
-		LEFT, RIGHT, JUMP, SHOOT, IDLE
-	}
 //	private KeyForHero keyListener = new KeyForHero();//Add keyListener to the frame
 
 
@@ -33,17 +30,7 @@ public class Hero extends Ball {
 
 	@Override
 	public void updatePosition() {
-		// code for hero movement
-//		switch (keyListener.getAction())
-//		{
-//			case LEFT: moveBy(-10.0,0.0);
-//			case RIGHT:moveBy(10.0,0.0);
-//			case JUMP: moveBy(0.0,10.0);
-//			case IDLE: moveBy(0.0,0.0);
-//			case SHOOT: moveBy(0.0,0.0);
-//			default:moveBy(0.0,0.0);
-//		}
-			}
+				}
 
 	@Override
 	public void updateSize() {

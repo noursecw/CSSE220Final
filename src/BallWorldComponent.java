@@ -49,10 +49,11 @@ public class BallWorldComponent extends JComponent {
 		BallWorldMouseHandler mousehandler = new BallWorldMouseHandler();
 		addMouseListener(mousehandler);
 		addMouseMotionListener(mousehandler);
+
 		//KeyListener added into world
-		KeyForHero keyListener = new KeyForHero();
+		KeyForHero keyListener = new KeyForHero(this.world);
 		addKeyListener(keyListener);//Add keyListener
-		System.out.println(keyListener.getAction());
+		setFocusable(true);
 
 		// Creates a timer which periodically triggers repainting of this component
 		// passage of time.

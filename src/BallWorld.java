@@ -59,6 +59,12 @@ public class BallWorld implements BallEnvironment, Drawable, Temporal {
 		advanceStateTimer.start();
 	}
 
+	public Ball getHero()
+	{
+			return ballsToAdd.get(0);
+	}
+
+
 	// -------------------------------------------------------------------------
 	// BallEnvironment interface
 

@@ -3,52 +3,46 @@ import java.awt.event.KeyListener;
 
 
 public class KeyForHero implements KeyListener {
-    private Hero.Actions Action;
+    final private Ball hero;
+    final private double speed = 3.0;
+    final private double zero = 0.0;
 
-    public KeyForHero() {
-        Hero.Actions Action = Hero.Actions.IDLE;
+    public KeyForHero(BallWorld world) {
+        this.hero = world.getHero();
     }
 
     @Override
     public void keyTyped(KeyEvent e) {
-        System.out.println(Action);
-//        judgeTheKey(e);
     }
 
     public void keyPressed(KeyEvent e) {
-        System.out.println(Action);
         judgeTheKey(e);
     }
     @Override
     public void keyReleased(KeyEvent e) {
-//        Action = Hero.Actions.IDLE;
-        System.out.println(Action);
+//        hero.moveBy(0.0,0.0);
     }
 
 
     private void judgeTheKey(KeyEvent e)
     {
         switch (e.getKeyCode()) {
-            case KeyEvent.VK_LEFT:
-                Action = Hero.Actions.LEFT;
-                System.out.println("reached left");
-                System.out.println(Action);
-            case KeyEvent.VK_RIGHT:
-                Action = Hero.Actions.LEFT;
-            case KeyEvent.VK_UP:
-                Action = Hero.Actions.LEFT;
-            case KeyEvent.VK_SPACE:
-                Action = Hero.Actions.LEFT;
-            case KeyEvent.KEY_RELEASED:
-                System.out.println("debug");
+            case 37://Left arrow
+                hero.moveBy(-speed,zero);
+            case 38://Up arrow
+                hero.moveBy(zero,-speed);
+            case 39://Right arrow
+                hero.moveBy(speed,zero);
+            case 32://Space
+                hero.moveBy(zero,zero);
             default:
-                System.out.println("Yeah");
-                Action = Hero.Actions.IDLE;
+                hero.moveBy(zero,zero);
         }
-        System.out.println("WTF");
+        System.out.println(e.getKeyCode());
+        System.out.println(this.hero.getCenterPoint());
     }
 
-    public Hero.Actions getAction() {
-        return this.Action;
-    }
+//    public Hero.Actions getAction() {
+//        return this.Action;
+//    }
 }
