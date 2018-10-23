@@ -46,12 +46,12 @@ public class GamePanel extends JPanel {
 
 
 		GameComponent worldComponent = new GameComponent(world);
-		ControlsPanel controlsPanel = new ControlsPanel(world);
-		// add "rigid stuff" to force minimum spacing
-		add(Box.createHorizontalStrut(GAP_WIDTH));
-		add(controlsPanel);
-		// add "rigid stuff" to force minimum spacing
-		add(Box.createHorizontalStrut(GAP_WIDTH));
+//		ControlsPanel controlsPanel = new ControlsPanel(world);
+//		// add "rigid stuff" to force minimum spacing
+//		add(Box.createHorizontalStrut(GAP_WIDTH));
+//		add(controlsPanel);
+//		// add "rigid stuff" to force minimum spacing
+//		add(Box.createHorizontalStrut(GAP_WIDTH));
 		add(worldComponent);
 		// adds "stretchy stuff" to force the world to the left
 		add(Box.createGlue());

@@ -21,7 +21,7 @@ public class Main {
 	private static final int MIN_WIDTH = 200;
 	private static final int MAX_WIDTH = 600;
 	private static final int MIN_HEIGHT = 100;
-	private static final int MAX_HEIGHT = 300;
+	private static final int MAX_HEIGHT = 500;
 	private static final Color[] BACKGROUND_COLORS = { Color.RED,
 			Color.BLUE, Color.GREEN };
 

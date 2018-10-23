@@ -6,9 +6,6 @@ import java.awt.Graphics2D;
 import java.awt.Shape;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
 import java.util.List;
 
 import javax.swing.JComponent;
@@ -52,7 +49,7 @@ public class GameComponent extends JComponent {
 //		addMouseMotionListener(mousehandler);
 
 		//KeyListener added into world
-		KeyForHero keyListener = new KeyForHero(this.world);
+		KeyInput keyListener = new KeyInput(this.world);
 		addKeyListener(keyListener);//Add keyListener
 		setFocusable(true);
 
@@ -79,6 +76,11 @@ public class GameComponent extends JComponent {
 		List<Drawable> drawableParts = this.world.getDrawableParts();
 		for (Drawable d : drawableParts) {
 			drawDrawable(g2, d);
+		}
+
+		List<Platform> platforms = this.world.getPlatforms();
+		for (Platform p : platforms) {
+			drawDrawable(g2, p);
 		}
 	}
 

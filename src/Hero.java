@@ -1,5 +1,5 @@
 import java.awt.Color;
-import java.awt.geom.Point2D;
+import java.awt.event.KeyEvent;
 
 public class Hero extends Sprite {
 	private GameWorld world;
@@ -31,24 +31,25 @@ public class Hero extends Sprite {
 	}
 
 	@Override
-	public void updatePosition() { //Only used for jump
-		switch (this.action) {
-			case left:
-				moveBy(-speed, zero);
-				setFacing(false);
-				break;
-			case jump:
-				this.jump();
-				break;
-			case right:
-				moveBy(speed, zero);
-				setFacing(true);
-				break;
-			case shoot://Space
-				this.shoot();
-				break;
-			default:
-				break;
+	public void updatePosition() {
+		if (KeyInput.isPressed(KeyEvent.VK_LEFT)) {
+			moveBy(-speed, zero);
+			setFacing(false);
+
+		} else if (KeyInput.isPressed(KeyEvent.VK_UP)) {
+			if(KeyInput.isUpReleased()){
+				moveBy(0,-5*speed);
+				KeyInput.setUpRelease(false);
+			}
+
+		} else if (KeyInput.isPressed(KeyEvent.VK_RIGHT)) {
+			moveBy(speed, zero);
+			setFacing(true);
+
+		} else if (KeyInput.isPressed(KeyEvent.VK_SPACE)) {
+			this.shoot();
+
+		} else if(!this.isStanding()){
 		}
 	}
 
@@ -75,20 +76,12 @@ public class Hero extends Sprite {
 		this.action = action;
 	}
 
-	private void jump()
+	/**
+	 *
+	 * @return result if hero standing on the ground
+	 */
+	private boolean isStanding()
 	{
-		int i=0;
-		switch (i){
-			case 0: moveBy(zero,-1*speed); i+=1; break;
-			case 1: moveBy(zero,-1*speed); i+=1; break;
-			case 2: moveBy(zero,speed); i+=1; break;
-			case 3: moveBy(zero,speed); i+=1; break;
-			case 4: moveBy(zero,speed); i+=1; break;
-			case 5: moveBy(zero,speed); i+=1; break;
-			default:moveBy(zero,zero); break;
-		}
-
-
-
+		return (this.world.getSize().getHeight()<(getCenterPoint().getY()+this.diameter/2));
 	}
 }

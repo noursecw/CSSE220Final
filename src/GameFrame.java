@@ -34,9 +34,9 @@ public class GameFrame extends JFrame {
 
 		JPanel content = new JPanel();
 		// Changes the layout of the panel so the worlds will stack vertically
-		content.setLayout(new BoxLayout(content, BoxLayout.PAGE_AXIS));
+		//content.setLayout(new BoxLayout(content, BoxLayout.PAGE_AXIS));
 		// add "rigid stuff" to force minimum spacing
-		content.add(Box.createVerticalStrut(GAP));
+		//content.add(Box.createVerticalStrut(GAP));
 
 
 

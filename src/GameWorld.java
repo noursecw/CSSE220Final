@@ -5,10 +5,12 @@ import java.awt.Dimension;
 import java.awt.Shape;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 import javax.swing.Timer;
 
 /**
@@ -27,6 +29,9 @@ public class GameWorld implements GameEnvironment, Drawable, Temporal {
 	private final List<Sprite> spritesToAdd = new ArrayList<>();
 	private final List<Sprite> spritesToRemove = new ArrayList<>();
 	private final List<Hero> heroList = new ArrayList<>();
+	private List<Platform> platforms = new ArrayList<>();
+
+	private int level;
 
 	private final Shape background;
 	private boolean isPaused = false;
@@ -47,6 +52,12 @@ public class GameWorld implements GameEnvironment, Drawable, Temporal {
 
 		this.background = new Rectangle2D.Double(0, 0, this.width, this.height);
 
+		//Start at level 1
+		this.level = 1;
+		new Level(this, 1);
+
+
+
 		// Creates a timer which periodically informs this world of the
 		// passage of time.
 		Timer advanceStateTimer = new Timer(UPDATE_INTERVAL_MS, new ActionListener() {
@@ -64,6 +75,23 @@ public class GameWorld implements GameEnvironment, Drawable, Temporal {
 	public Hero getHero()
 	{
 		return heroList.get(0);
+	}
+
+	public void increaseLevel()
+	{
+		this.level++;
+		clearLevel();
+		new Level(this, this.level);
+	}
+	public void decreaseLevel()
+	{
+		if(this.level>1) this.level-=1;
+		clearLevel();
+//		new Level(this,this.level);
+	}
+	public void clearLevel()
+	{
+		this.platforms = new ArrayList<>();
 	}
 
 	/*
@@ -86,7 +114,10 @@ public class GameWorld implements GameEnvironment, Drawable, Temporal {
 		this.heroList.add(hero);
 		this.spritesToAdd.add(hero);
 	}
-
+	public void addPlatform(Platform platform)
+	{
+		platforms.add(platform);
+	}
 	@Override
 	public synchronized Sprite nearestSprite(Point2D point) {
 		Sprite nearest = null;
@@ -123,7 +154,11 @@ public class GameWorld implements GameEnvironment, Drawable, Temporal {
 
 	@Override
 	public synchronized List<Drawable> getDrawableParts() {
-		return new ArrayList<>(this.sprites);
+		return new ArrayList<Drawable>(this.sprites);
+	}
+
+	public synchronized List<Platform> getPlatforms() {
+		return new ArrayList<Platform>(this.platforms);
 	}
 
 	@Override
@@ -160,6 +195,15 @@ public class GameWorld implements GameEnvironment, Drawable, Temporal {
 		this.spritesToRemove.clear();
 		this.sprites.addAll(this.spritesToAdd);
 		this.spritesToAdd.clear();
+
+		if(KeyInput.isPressed(KeyEvent.VK_U)) {
+			increaseLevel();
+		}
+		if(KeyInput.isPressed(KeyEvent.VK_D)) {
+			decreaseLevel();
+		}
+
+
 	}
 
 	@Override
